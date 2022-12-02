@@ -1,0 +1,13 @@
+{
+  "branches": [
+    "main"
+  ],
+  "verifyConditions": {
+    "path": "semantic-release-docker",
+    "registryUrl": "docker.io"
+  },
+  "publish": {
+    "path": "semantic-release-docker",
+    "name": "playerdata/failed-pod-controller"
+  }
+}

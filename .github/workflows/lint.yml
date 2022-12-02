@@ -1,0 +1,57 @@
+name: Lint
+
+on: [pull_request]
+
+jobs:
+  black:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Black
+        uses: psf/black@22.10.0
+
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Commitlint
+        run: |
+          npm install -g @commitlint/cli @commitlint/config-conventional
+          commitlint --from ${{ github.event.pull_request.base.sha }}
+
+  release-dry-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "lts/*"
+
+      - name: Docker build
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          tags: playerdata/failed-pod-controller
+          push: false
+
+      - name: Release Dry Run
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm install -g semantic-release semantic-release-docker
+          npx semantic-release --dry-run
