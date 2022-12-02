@@ -2,12 +2,14 @@
   "branches": [
     "main"
   ],
-  "verifyConditions": {
-    "path": "semantic-release-docker",
-    "registryUrl": "docker.io"
-  },
-  "publish": {
-    "path": "semantic-release-docker",
-    "name": "playerdata/failed-pod-controller"
-  }
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    [
+      "semantic-release-docker",
+      {
+        "name": "playerdata/failed-pod-controller",
+        "registryUrl": "docker.io"
+      }
+    ]
+  ]
 }
