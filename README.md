@@ -14,6 +14,19 @@ a state of `Terminated`.
 This leads to issues such as https://github.com/prometheus/prometheus/issues/10257,
 and can lead to alerts firing unnecessarily.
 
+## Deployment
+
+Use [Kustomize](https://kustomize.io/), or deploy the docker image yourself:
+
+```
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: failed-pod-controller
+
+resources:
+  - github.com/playerdata/failed-pod-controller?ref=main
+```
+
 ## Configuration
 
 Available Env Vars:

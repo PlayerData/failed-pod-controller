@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: failed-pod-controller
+  name: failed-pod-controller
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: failed-pod-controller
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: failed-pod-controller
+    spec:
+      serviceAccountName: failed-pod-controller
+      containers:
+        - name: failed-pod-controller
+
+          image: playerdata/failed-pod-controller:latest
+          imagePullPolicy: Always
+
+          resources:
+            requests:
+              cpu: "0.1"
+              memory: 256M
+            limits:
+              cpu: "0.1"
+              memory: 256M
