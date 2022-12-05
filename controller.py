@@ -28,7 +28,7 @@ def handle_pod_event(client: client.CoreV1Api, event, dry_run):
 def main():
     dry_run = environ.get("CONTROLLER_DRY_RUN")
 
-    config.load_kube_config()
+    config.load_incluster_config()
 
     v1 = client.CoreV1Api()
 
