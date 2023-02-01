@@ -41,7 +41,7 @@ jobs:
           node-version: "lts/*"
 
       - name: Docker build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: .
           tags: playerdata/failed-pod-controller
