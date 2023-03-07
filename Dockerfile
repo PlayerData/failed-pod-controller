@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 COPY controller.py .
 
-CMD ["python", "controller.py"]
+CMD ["kopf", "run", "controller.py", "--standalone", "--all-namespaces"]
