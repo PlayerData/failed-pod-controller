@@ -12,7 +12,7 @@ jobs:
           fetch-depth: 0
 
       - name: Black
-        uses: psf/black@23.12.1
+        uses: psf/black@24.1.1
 
   commitlint:
     runs-on: ubuntu-latest
