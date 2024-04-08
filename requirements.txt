@@ -1,2 +1,2 @@
 kubernetes==29.0.0
-kopf==1.37.1
+kopf==1.37.2
