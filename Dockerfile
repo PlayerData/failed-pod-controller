@@ -1,4 +1,4 @@
-FROM python:3.12.5-alpine
+FROM python:3.12.6-alpine
 
 # Ref https://github.com/docker-library/docker/issues/240 we need to explicitly install python
 RUN apk --no-cache add --virtual builds-deps build-base python3
