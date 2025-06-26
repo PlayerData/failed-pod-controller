@@ -25,5 +25,5 @@ spec:
               cpu: "0.2"
               memory: 512M
             limits:
-              cpu: "0.2"
-              memory: 512M
+              cpu: "0.5"
+              memory: 1Gi
