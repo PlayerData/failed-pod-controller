@@ -3,10 +3,12 @@ from os import environ
 from kubernetes import client
 import kopf
 
+# Create a single API client instance to reuse across all events
+api = client.CoreV1Api()
+
 
 @kopf.on.field("Pod", field="status.phase")
 def handle_phase_change(name, namespace, status, **_):
-    api = client.CoreV1Api()
 
     if status["phase"] != "Failed":
         return
